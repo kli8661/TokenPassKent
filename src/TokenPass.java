@@ -1,18 +1,16 @@
-import java.util.Arrays;
-
-public class TokenPass {
-
+public class TokenPass
+{
     private int[] board;
     private int currentPlayer;
 
     public TokenPass(int playerCount)
     {
         this.board = new int[playerCount];
-        for(int i = 0; i <= playerCount; i++)
+        for (int i = 0; i < board.length; i++)
         {
-            this.board[i] = (int)(Math.random() * 10) + 1;
+            board[i] = 1 + (int)(Math.random() * 10);
         }
-        this.currentPlayer = (int)(Math.random() * playerCount - 1);
+        currentPlayer = (int)(playerCount * Math.random());
     }
 
     public void distributeCurrentPlayerTokens()
@@ -29,18 +27,33 @@ public class TokenPass {
         }
     }
 
-    public int gameOver()
+    public void printBoard()
     {
-        return java.util.Arrays.asList(board).indexOf(0);
+        for (int i = 0; i < board.length; i++)
+        {
+            System.out.print("Player " + i + " : " + board[i] + "  ");
+        }
+        System.out.println("Current Player : " + currentPlayer);
     }
 
     public void nextPlayer()
     {
-        currentPlayer--;
+        currentPlayer++;
+        if(currentPlayer == board.length)
+        {
+            currentPlayer = 0;
+        }
     }
 
-    public void printBoard()
+    public int gameOver()
     {
-        System.out.println(Arrays.toString(board));
+        int winner = -1;
+        for(int i = 0; i < board.length;i++)
+        {
+            if(board[i] == 0){
+                winner = i;
+            }
+        }
+        return winner;
     }
 }
