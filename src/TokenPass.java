@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class TokenPass {
 
     private int[] board;
@@ -25,5 +27,20 @@ public class TokenPass {
             board[nextPlayer]++;
             numToDistribute--;
         }
+    }
+
+    public int gameOver()
+    {
+        return java.util.Arrays.asList(board).indexOf(0);
+    }
+
+    public void nextPlayer()
+    {
+        currentPlayer--;
+    }
+
+    public void printBoard()
+    {
+        System.out.println(Arrays.toString(board));
     }
 }
